@@ -16,7 +16,7 @@ DNF_ENABLE='n'
 DNF_COPR='y'
 branchname=123.09beta01
 DOWNLOAD="${branchname}.zip"
-LOCALCENTMINMOD_MIRROR='https://centminmod.com'
+LOCALCENTMINMOD_MIRROR='https://github.com/guyezi'
 
 FORCE_IPVFOUR='y' # curl/wget commands through script force IPv4
 INSTALLDIR='/usr/local/src'
@@ -28,10 +28,10 @@ DIR_TMP='/svr-setup'
 # Centmin Mod Git Repo URL - primary repo
 # https://github.com/centminmod/centminmod
 GITINSTALLED='y'
-CMGIT='https://github.com/centminmod/centminmod.git'
+CMGIT='https://github.com/guyezi/centminmod.git'
 # Gitlab backup repo 
-# https://gitlab.com/centminmod/centminmod
-#CMGIT='https://gitlab.com/centminmod/centminmod.git'
+# https://gitlab.com/guyezi/centminmod
+#CMGIT='https://gitlab.com/guyezi/centminmod.git'
 #####################################################
 # wget renamed github
 AXEL='n'
@@ -48,7 +48,7 @@ ALTPCRELINK="${LOCALCENTMINMOD_MIRROR}/centminmodparts/pcre/${ALTPCRELINKFILE}"
 WGET_VERSION='1.20.3'
 WGET_VERSION_SEVEN='1.20.3'
 WGET_FILENAME="wget-${WGET_VERSION}.tar.gz"
-WGET_LINK="https://centminmod.com/centminmodparts/wget/${WGET_FILENAME}"
+WGET_LINK="https://github.com/centminmodparts/wget/${WGET_FILENAME}"
 
 CPUSPEED=$(awk -F: '/cpu MHz/{print $2}' /proc/cpuinfo | sort | uniq -c | sed -e s'|      ||g' | xargs); 
 CPUMODEL=$(awk -F: '/model name/{print $2}' /proc/cpuinfo | sort | uniq -c | xargs);
@@ -1206,7 +1206,7 @@ cd $INSTALLDIR
 
 # switch from PHP 5.4.41 to 5.6.9 default with Zend Opcache
 PHPVERLATEST=$(curl -${ipv_forceopt}sL https://www.php.net/downloads.php| egrep -o "php\-[0-9.]+\.tar[.a-z]*" | grep -v '.asc' | awk -F "php-" '/.tar.gz$/ {print $2}' | sed -e 's|.tar.gz||g' | uniq | grep '7.3' | head -n1)
-PHPVERLATEST=${PHPVERLATEST:-"7.3.4"}
+PHPVERLATEST=${PHPVERLATEST:-"7.3.6"}
 sed -i "s|^PHP_VERSION='.*'|PHP_VERSION='$PHPVERLATEST'|" centmin.sh
 sed -i "s|ZOPCACHEDFT='n'|ZOPCACHEDFT='y'|" centmin.sh
 
